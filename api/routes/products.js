@@ -8,8 +8,17 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
+    const product = {
+        productId: req.body.productId,
+        name: req.body.name,
+        description: req.body.description,
+        weight: req.body.weight,
+        price: req.body.price,
+        stock: req.body.stock
+    };
     res.status(201).json({
-        message: 'Handling POST request to /products'
+        message: 'Handling POST request to /products',
+        createProduct: product
     });
 });
 
