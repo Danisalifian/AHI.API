@@ -2,10 +2,15 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 const userRoutes = require('./api/routes/users');
+
+mongoose.connect('mongodb://ahi-api:'+ process.env.MONGO_ATLAS_PW +'@ahi-api-shard-00-00-ankso.mongodb.net:27017,ahi-api-shard-00-01-ankso.mongodb.net:27017,ahi-api-shard-00-02-ankso.mongodb.net:27017/test?ssl=true&replicaSet=ahi-api-shard-0&authSource=admin&retryWrites=true', {
+    useMongoClient: true
+});
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
